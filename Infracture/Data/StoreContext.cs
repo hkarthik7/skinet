@@ -6,7 +6,7 @@ namespace Infracture.Data
 {
     public class StoreContext : DbContext
     {
-        // The DB Context Options will give us the option to create connection string
+        // The DBContextOptions will give us the option to create connection string
         public StoreContext(DbContextOptions<StoreContext> options) : base(options)
         {
         }
@@ -15,7 +15,7 @@ namespace Infracture.Data
         public DbSet<ProductBrand> ProductBrands { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
 
-        // Override OnModelCreating method which create migrations and tell it to look of custom configuration inside the project
+        // Override OnModelCreating method which create migrations and tell it to look for custom configuration inside the project
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // base is the class that we're deriving from; In this case it is DbContext
