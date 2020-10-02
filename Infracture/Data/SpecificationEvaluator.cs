@@ -16,7 +16,22 @@ namespace Infracture.Data
                 query = query.Where(spec.Criteria);
             }
 
-            // 'cuurent' represents the entity that we are passing in.
+            if (spec.OrderBy != null)
+            {
+                query = query.OrderBy(spec.OrderBy);
+            }
+
+            if (spec.OrderByDescending != null)
+            {
+                query = query.OrderByDescending(spec.OrderByDescending);
+            }
+
+            if (spec.IsPagingEnabled)
+            {
+                query = query.Skip(spec.Skip).Take(spec.Take);
+            }
+
+            // 'current' represents the entity that we are passing in.
             query = spec.Includes.Aggregate(query, (current, include) => current.Include(include));
 
             return query;
